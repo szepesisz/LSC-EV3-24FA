@@ -22,8 +22,16 @@ def health_check():
         print(sensor_raise.pressed())
         wait(500)
 
+def calibrate():
+    motor_turn.run(5)
+    while not sensor_turn.pressed():
+        wait(50)
+    motor_turn.stop()
+
+
 def main():
-     health_check()
+    # health_check()
+    calibrate()
 
 if __name__ == '__main__':
     main()
