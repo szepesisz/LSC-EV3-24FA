@@ -1,0 +1,4 @@
+pybricks
+keyboard
+matplotlib
+requests
