@@ -4,12 +4,16 @@ from pybricks.ev3devices import (
     Motor,
     TouchSensor
 )
-from pybricks.parameters import Port
+from pybricks.parameters import Port, Direction
 from pybricks.tools import wait
 
 ev3 = EV3Brick()
 
-motor_turn = Motor(Port.C)
+motor_turn = Motor(
+    port=Port.C,
+    positive_direction=Direction.CLOCKWISE,
+    gears=[12, 36]
+    )
 motor_raise = Motor(Port.B)
 motor_grip = Motor(Port.A)
 
@@ -23,15 +27,19 @@ def health_check():
         wait(500)
 
 def calibrate():
-    motor_turn.run(5)
+    motor_turn.run(30)
     while not sensor_turn.pressed():
         wait(50)
-    motor_turn.stop()
+    motor_turn.hold()
+    motor_turn.reset_angle(180)
+    motor_turn.run_angle(90)
+
 
 
 def main():
     # health_check()
     calibrate()
+    wait(10_000)
 
 if __name__ == '__main__':
     main()
