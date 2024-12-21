@@ -37,6 +37,9 @@ def calibrate():
 
 
 def main():
+    """
+    Operating the Robot Arm
+    """
     # health_check()
     calibrate()
     wait(10_000)
